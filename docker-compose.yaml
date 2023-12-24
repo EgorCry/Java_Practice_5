@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  app1:
+    build:
+      dockerfile: src/Dockerfile
+    image: practice5
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    environment:
+      - NAME_APP=app1
+    volumes:
+      - ../files:/files
+
+
+  app2:
+    build:
+      dockerfile: Dockerfile
+    image: practice5
+    restart: on-failure
+    environment:
+      - NAME_APP=app2
+    volumes:
+      - ../files:/files
+
+  app3:
+    build:
+      dockerfile: Dockerfile
+    image: practice5
+    restart: on-failure
+    environment:
+      - NAME_APP=app3
+    volumes:
+      - ../files:/files
+
+
+  app4:
+    build:
+      dockerfile: Dockerfile
+    image: practice5
+    restart: on-failure
+    environment:
+      - NAME_APP=app4
+    volumes:
+      - ../files:/files
+
+
+  proxy:
+    image: nginx:1.21
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
